@@ -1,21 +1,24 @@
 import { useState } from "react";
 import QRCode from "react-qr-code";
 import QRCodeLink from "qrcode";
-import Linkedin from '../src/assets/link.svg'
-import GitHub from '../src/assets/github.svg'
+import Linkedin from "../src/assets/link.svg";
+import GitHub from "../src/assets/github.svg";
 
 function App() {
   const [input, setInput] = useState("");
   const [qrcodeLink, setQrCodeLink] = useState("");
 
   function handleLink(link_url) {
-    QRCodeLink.toDataURL(link_url, {
-      width: 600,
-      margin: 3,
-    }, function (err, url) {
-      setQrCodeLink(url);
-    })
-      
+    QRCodeLink.toDataURL(
+      link_url,
+      {
+        width: 600,
+        margin: 3,
+      },
+      function (err, url) {
+        setQrCodeLink(url);
+      }
+    );
   }
 
   function toggleElement(e) {
@@ -52,23 +55,26 @@ function App() {
           className="bg-white items-start pl-3 rounded-lg px-18 py-3 outline-black font-serif"
           type="text"
         />
-        <button
-          className="font-medium text-lg text-white rounded-2xl py-2 px-4 cursor-pointer shadow-[0_20px_50px_rgba(19,_24,_25,_0.8)] hover:opacity-80 bg-black"
-          href={qrcodeLink}
-          download={`qrcode.png`}
-        >
-          Baixar QR Code
-        </button>
+        <a href={qrcodeLink} download={`qrcode.png`}>
+          <button className="font-medium text-lg text-white rounded-2xl py-2 px-4 cursor-pointer shadow-[0_20px_50px_rgba(19,_24,_25,_0.8)] hover:opacity-80 bg-black">
+            Baixar QR Code
+          </button>
+        </a>
       </div>
 
       <div className="flex justify-center mt-5 gap-2">
-        <a className="duration-500 hover:scale-110" href="https://www.linkedin.com/in/gpimenta07/">
+        <a
+          className="duration-500 hover:scale-110"
+          href="https://www.linkedin.com/in/gpimenta07/"
+        >
           <img src={Linkedin} alt="logo-linkedin" />
         </a>
-        <a className="duration-500 hover:scale-110" href="https://github.com/gpimenta07">
+        <a
+          className="duration-500 hover:scale-110"
+          href="https://github.com/gpimenta07"
+        >
           <img src={GitHub} alt="logo-github" />
         </a>
-        
       </div>
     </>
   );
